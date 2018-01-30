@@ -1,0 +1,12 @@
+# dependencies
+/node_modules
+
+# next
+.next
+/src/.next
+
+# misc
+.env
+.vscode
+.DS_Store
+npm-debug.log*
