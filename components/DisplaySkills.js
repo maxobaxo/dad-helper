@@ -1,44 +1,58 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { graphql } from "react-apollo";
+import gql from "graphql-tag";
 import SkillCheckbox from "./SkillCheckbox";
-// import { Button, Panel, Accordion } from "react-bootstrap";
 
-function DisplaySkills(props) {
-  const submitButton = (
-    <Button bsStyle="success" bsSize="xs" type="submit">
-      Submit
-    </Button>
-  );
+class DisplaySkills extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      age_id: this.props.ageId
+    };
+  }
 
-  return (
-    <div>
-      <form onSubmit={props.handleFormSubmit}>
-        <Accordion>
-          <Panel
-            bsStyle="success"
-            header="Which of these skills has your baby mastered?"
-            footer={submitButton}
-          >
-            {props.babySkills.map((skill, index) => (
-              <SkillCheckbox
-                skill={skill}
-                skillName={skill.name}
-                skillId={skill._id}
-                handleCheckboxChange={props.handleCheckboxChange}
-                key={index}
-              />
-            ))}
-          </Panel>
-        </Accordion>
-      </form>
-    </div>
-  );
+  render() {
+    console.log("passed ageID", this.props.ageId);
+    console.log("display skills: ", this.props.data.skills);
+    return (
+      <div>
+        <p>
+          Given your baby's age range, (s)he may have mastered one or more of
+          the following skills: Please let us know which fetes your little one
+          has accomplished.
+        </p>
+        <div>
+          <form onSubmit={this.handleFormSubmit}>
+            {this.props.data.skills
+              ? this.props.data.skills.map((skill, index) => (
+                  <SkillCheckbox
+                    skill={skill}
+                    handleCheckboxChange={this.props.handleCheckboxChange}
+                    key={index}
+                  />
+                ))
+              : null}
+            <button type="submit">Submit</button>
+          </form>
+        </div>
+      </div>
+    );
+  }
 }
 
 DisplaySkills.propTypes = {
-  babySkills: PropTypes.array,
-  handleFormSubmit: PropTypes.func,
-  handleCheckboxChange: PropTypes.func
+  ageId: PropTypes.number,
+  handleCheckboxChange: PropTypes.func,
+  handleFormSubmit: PropTypes.func
 };
 
-export default DisplaySkills;
+const SKILLS_QUERY = gql`
+  query getSkills($ageId: Int!) {
+    skills(ageId: $ageId) {
+      name
+    }
+  }
+`;
+
+export default graphql(SKILLS_QUERY)(DisplaySkills);

@@ -1,6 +1,7 @@
 import React from "react";
+// import { graphql } from "react-apollo";
+// import gql from "graphql-tag";
 import AgeForm from "./AgeForm";
-import DisplaySkills from "./DisplaySkills";
 import DisplayGames from "./DisplayGames";
 import PropTypes from "prop-types";
 
@@ -13,6 +14,8 @@ class AgeFormControl extends React.Component {
       // gamesAreHidden: true
     };
     this.hideAgeForm = this.hideAgeForm.bind(this);
+    this.submitAgeForm = this.submitAgeForm.bind(this);
+    this.handleSkillsFormSubmit = this.handleSkillsFormSubmit.bind(this);
   }
 
   hideAgeForm() {
@@ -22,11 +25,37 @@ class AgeFormControl extends React.Component {
     });
   }
 
+  componentWillMount() {
+    this.selectedCheckboxes = new Set();
+  }
+
+  submitAgeForm(age) {}
+
+  handleSkillsFormSubmit() {
+    const selectedSkills = [];
+    for (const checkbox of this.selectedCheckboxes) {
+      selectedSkills.push(checkbox);
+    }
+    // do something with selectedSkills
+  }
+
+  toggleCheckbox = label => {
+    if (this.selectedCheckboxes.has(label)) {
+      this.selectedCheckboxes.delete(label);
+    } else {
+      this.selectedCheckboxes.add(label);
+    }
+  };
+
   render() {
     return (
       <div>
         <div hidden={this.state.ageFormIsHidden}>
-          <AgeForm hideAgeForm={this.hideAgeForm} />
+          <AgeForm
+            handleCheckboxChange={this.toggleCheckbox}
+            handleFormSubmit={this.handleSkillsFormSubmit}
+            submitAgeForm={this.submitAgeForm}
+          />
         </div>
         {/* <div hidden={this.state.skillsFormIsHidden}>
           <DisplaySkills
@@ -42,12 +71,5 @@ class AgeFormControl extends React.Component {
     );
   }
 }
-
-AgeFormControl.propTypes = {
-  handleFormSubmit: PropTypes.func,
-  handleCheckboxChange: PropTypes.func,
-  babySkills: PropTypes.array,
-  gamesToPlay: PropTypes.array
-};
 
 export default AgeFormControl;

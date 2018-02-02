@@ -25,18 +25,9 @@ const Index = props => {
   //   dispatch(getGames(selectedSkills));
   // };
 
-  // toggleCheckbox = label => {
-  //   if (this.selectedCheckboxes.has(label)) {
-  //     this.selectedCheckboxes.delete(label);
-  //   } else {
-  //     this.selectedCheckboxes.add(label);
-  //   }
-  // };
-
   return (
     <div>
-      {/* {props.data ? props.data.games[0].name : "no go, jimbo"} */}
-      <AgeFormControl  />
+      <AgeFormControl />
     </div>
   );
 };
