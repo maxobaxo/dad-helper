@@ -17,12 +17,6 @@ class AgeForm extends React.Component {
     });
   }
 
-  handleAgeSubmit(event) {
-    console.log("you have submitted the age range of ", this.state.baby_age_id);
-
-    this.props.submitAgeForm(this.state.baby_age_id);
-  }
-
   render() {
     return (
       <div>
@@ -40,14 +34,13 @@ class AgeForm extends React.Component {
             <option value="2">5 - 8 Months</option>
             <option value="3">9 - 12 Months</option>
           </select>
-          <button type="submit" value="submit">
+          <button hidden type="submit" value="submit">
             Submit
           </button>
         </form>
         <DisplaySkills
           handleCheckboxChange={this.props.handleCheckboxChange}
           ageId={this.state.baby_age_id}
-          handleFormSubmit={this.props.handleFormSubmit}
         />
       </div>
     );

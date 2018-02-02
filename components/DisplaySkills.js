@@ -15,25 +15,20 @@ class DisplaySkills extends React.Component {
   render() {
     return (
       <div>
-        <p>
-          Given your baby's age range, (s)he may have mastered one or more of
-          the following skills: Please let us know which fetes your little one
-          has accomplished.
-        </p>
-        <div>
-          <form onSubmit={this.handleFormSubmit}>
-            {this.props.data.skills
-              ? this.props.data.skills.map((skill, index) => (
-                  <SkillCheckbox
-                    skill={skill}
-                    handleCheckboxChange={this.props.handleCheckboxChange}
-                    key={index}
-                  />
-                ))
-              : null}
-            <button type="submit">Submit</button>
-          </form>
-        </div>
+        <form onSubmit={this.props.handleFormSubmit}>
+          {this.props.data.skills
+            ? this.props.data.skills.map((skill, index) => (
+                <SkillCheckbox
+                  skill={skill}
+                  handleCheckboxChange={this.props.handleCheckboxChange}
+                  key={index}
+                />
+              ))
+            : null}
+          <button hidden type="submit">
+            Submit
+          </button>
+        </form>
       </div>
     );
   }

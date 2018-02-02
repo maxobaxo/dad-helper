@@ -11,9 +11,16 @@ class DisplayGame extends React.Component {
       skill_name: this.props.name
     };
   }
+
   render() {
     if (!this.props.data.game) {
-      return null;
+      return (
+        <p>
+          My bad, I don't have a game yet for kids who have mastered "{
+            this.state.skill_name
+          }"... Stay tuned!
+        </p>
+      );
     }
 
     const { name, description, bonus } = this.props.data.game;
