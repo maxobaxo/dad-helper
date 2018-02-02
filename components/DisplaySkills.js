@@ -13,8 +13,6 @@ class DisplaySkills extends React.Component {
   }
 
   render() {
-    console.log("passed ageID", this.props.ageId);
-    console.log("display skills: ", this.props.data.skills);
     return (
       <div>
         <p>
@@ -51,6 +49,8 @@ const SKILLS_QUERY = gql`
   query getSkills($ageId: Int!) {
     skills(ageId: $ageId) {
       name
+      id
+      ageId
     }
   }
 `;

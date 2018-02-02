@@ -1,25 +1,19 @@
 import React from "react";
 import PropTypes from "prop-types";
-// import Game from "./Game";
+import DisplayGame from "./DisplayGame";
 
 function DisplayGames(props) {
   return (
     <div>
-      {props.gamesToPlay.map(game => (
-        <Game
-          name={game.name}
-          description={game.description}
-          bonus={game.bonus}
-          id={game._id}
-          key={game._id}
-        />
+      {props.skills.map((skill, index) => (
+        <DisplayGame name={skill.name} id={skill.id} key={index} />
       ))}
     </div>
   );
 }
 
 DisplayGames.propTypes = {
-  gamesToPlay: PropTypes.array
+  skills: PropTypes.array
 };
 
 export default DisplayGames;
