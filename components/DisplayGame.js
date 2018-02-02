@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { graphql } from "react-apollo";
 import gql from "graphql-tag";
+import { Panel, PanelFooter, PanelHeader, Text, Box } from "rebass";
 
 class DisplayGame extends React.Component {
   constructor(props) {
@@ -15,21 +16,29 @@ class DisplayGame extends React.Component {
   render() {
     if (!this.props.data.game) {
       return (
-        <p>
-          My bad, I don't have a game yet for kids who have mastered "{
-            this.state.skill_name
-          }"... Stay tuned!
-        </p>
+        <Panel m={2}>
+          <PanelHeader>Oops!</PanelHeader>
+          <Box>
+            <Text p={2}>
+              My bad, I don't have a game yet for kids who have mastered "{
+                this.state.skill_name
+              }"...
+            </Text>
+          </Box>
+          <PanelFooter>Stay tuned!</PanelFooter>
+        </Panel>
       );
     }
 
     const { name, description, bonus } = this.props.data.game;
     return (
-      <div>
-        <p>{name}</p>
-        <p>{description}</p>
-        <p>{bonus}</p>
-      </div>
+      <Panel m={2}>
+        <PanelHeader>{name}</PanelHeader>
+        <Box>
+          <Text p={2}>{description}</Text>
+        </Box>
+        <PanelFooter>Bonus: {bonus}</PanelFooter>
+      </Panel>
     );
   }
 }

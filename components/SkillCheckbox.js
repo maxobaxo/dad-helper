@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { Checkbox, Label } from "rebass";
 
 class SkillCheckbox extends React.Component {
   constructor(props) {
@@ -21,17 +22,15 @@ class SkillCheckbox extends React.Component {
     const { isChecked } = this.state;
 
     return (
-      <div>
-        <label>
-          <input
-            type="checkbox"
-            value={this.props.skillId}
-            checked={isChecked}
-            onChange={this.toggleCheckboxChange}
-          />
-          {this.props.skill.name}
-        </label>
-      </div>
+      <Label>
+        <Checkbox
+          value={this.props.skillId}
+          checked={isChecked}
+          onChange={this.toggleCheckboxChange}
+          m={1}
+        />
+        {this.props.skill.name}
+      </Label>
     );
   }
 }

@@ -4,6 +4,7 @@ import gql from "graphql-tag";
 import AgeForm from "./AgeForm";
 import DisplayGames from "./DisplayGames";
 import PropTypes from "prop-types";
+import { Flex } from "rebass";
 
 class AgeFormControl extends React.Component {
   constructor(props) {

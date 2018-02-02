@@ -12,11 +12,7 @@ const Index = props => {
     return <p>error, bro</p>;
   }
 
-  return (
-    <div>
-      <AgeFormControl />
-    </div>
-  );
+  return <AgeFormControl />;
 };
 
 export default Index;

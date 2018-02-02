@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import DisplaySkills from "./DisplaySkills";
+import { Select, Label } from "rebass";
 
 class AgeForm extends React.Component {
   constructor(props) {
@@ -21,19 +22,18 @@ class AgeForm extends React.Component {
     return (
       <div>
         <form onSubmit={this.props.handleAgeSubmit}>
-          <label>How old is your little one?</label>
-          <select
+          <Label>How old is your little one?</Label>
+          <Select
             value={this.state.baby_age_id}
             onChange={this.handleChange}
+            defaultValue="1"
             required
           >
-            <option selected disabled>
-              Select an Age Range
-            </option>
+            <option value="0">Select an Age Range</option>
             <option value="1">0 - 4 Months</option>
             <option value="2">5 - 8 Months</option>
             <option value="3">9 - 12 Months</option>
-          </select>
+          </Select>
           <button hidden type="submit" value="submit">
             Submit
           </button>

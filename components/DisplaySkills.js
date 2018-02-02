@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { graphql } from "react-apollo";
 import gql from "graphql-tag";
 import SkillCheckbox from "./SkillCheckbox";
+import { Box } from "rebass";
 
 class DisplaySkills extends React.Component {
   constructor(props) {
@@ -14,7 +15,7 @@ class DisplaySkills extends React.Component {
 
   render() {
     return (
-      <div>
+      <Box m={3}>
         <form onSubmit={this.props.handleFormSubmit}>
           {this.props.data.skills
             ? this.props.data.skills.map((skill, index) => (
@@ -29,7 +30,7 @@ class DisplaySkills extends React.Component {
             Submit
           </button>
         </form>
-      </div>
+      </Box>
     );
   }
 }
